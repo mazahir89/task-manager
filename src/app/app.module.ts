@@ -7,6 +7,8 @@ import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
+import { NotFoundComponent } from './not-found.component';
+import { DashboardComponent } from './dash-board/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -16,13 +18,31 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'home', component:HomeComponent
+    path: 'home', component: HomeComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./dash-board/dash-board.module').then(
+          (u) => u.DashBoardModule
+        ),
+      },
+      {
+        path: 'todo',
+        loadChildren: () => import('./tasks/tasks.module').then(
+          (u) => u.TasksModule
+        ),
+      },
+    ],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent
+    AppComponent, HomeComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule,
