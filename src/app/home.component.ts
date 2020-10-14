@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component(
     {
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
     }
 )
 export class HomeComponent {
+    constructor(private activatedRoute:ActivatedRoute) {
+        console.log(activatedRoute.snapshot.paramMap.get("name"));
+       activatedRoute.paramMap.subscribe(item => {
+           console.log(item.get("name"));
+
+        });
+    }
 
 }

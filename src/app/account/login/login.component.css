@@ -1,0 +1,16 @@
+login.component.css
+.logPanel {
+  margin: 50px 30%;
+}
+.register {
+  font-weight: bold;
+  text-decoration: underline;
+  color: blue;
+}
+
+.register:hover {
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  color: blue;
+}
